@@ -124,6 +124,36 @@ test("Route params are correctly injected.", async () => {
     expect(model.queryParam?.get("age")).toBe("1");
 });
 
+test("Going back via history should properly call unmount event", async () => {
+    const navigation = new Navigation();
+
+    const model = new TestRoutedVM();
+    const container = new DependencyContainer({
+        model,
+    });
+    container.initialize();
+
+    let history: History<any> = (null as any);
+    render(
+        <TestRoutedParent
+            contextValue={container.contextValue}
+            model={model}
+            onHistory={(h) => {
+                history = h;
+                navigation.setHistory(h);
+            }}
+        />
+    );
+    
+    history.push("/test/1234");
+    await PromiseUtils.wait(50);
+    expect(model.isActive.value).toBe(true);
+    
+    history.goBack();
+    await PromiseUtils.wait(50);
+    expect(model.isActive.value).toBe(false);
+});
+
 test("Route params are updated while the view is active.", async () => {
     const navigation = new Navigation();
 
