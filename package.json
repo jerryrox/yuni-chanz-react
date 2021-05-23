@@ -35,7 +35,7 @@
   },
   "scripts": {
     "deploy": "yarn lint && yarn build && npm publish ./build",
-    "build": "yarn clean && tsc -p ./tsconfig.build.json && cp package.json ./build",
+    "build": "yarn clean && tsc -p ./tsconfig.build.json && cp {package.json,README.md} ./build",
     "clean": "rm -rf ./build && rm -f ./tsconfig.build.tsbuildinfo",
     "lint": "eslint src/**/*.{ts,tsx}",
     "test": "react-scripts test"
