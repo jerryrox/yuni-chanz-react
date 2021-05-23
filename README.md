@@ -2,9 +2,7 @@
 The core components of the Yuni Chanz React library.
 
 ## Versions
-### 0.0.2 (WIP)
-
-### 0.0.1
+### 0.0.2
 #### New features
 - Implemented dependency management module.
 - Implemented a utility class for Promises.
