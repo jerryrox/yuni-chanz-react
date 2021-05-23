@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "isolatedModules": false,
+        "declaration": true,
+        "noEmit": false,
+        "outDir": "./build",
+        "rootDir": "./src/lib"
+    },
+    "include": [
+        "./src/lib/**/*"
+    ]
+}
