@@ -1,6 +1,6 @@
 {
   "name": "yuni-chanz-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
