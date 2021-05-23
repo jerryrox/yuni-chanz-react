@@ -56,6 +56,6 @@ export default class Navigation extends BaseBloc {
             return;
         }
 
-        this.history.back();
+        this.history.goBack();
     }
 }

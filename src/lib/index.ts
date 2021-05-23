@@ -1,12 +1,12 @@
-export { default as IAPI } from "./api/IApi";
-export { default as IStreamableDataApi } from "./api/IStreamableDataApi";
-export { default as IStreamableQueryApi } from "./api/IStreamableQueryApi";
+export type { default as IApi } from "./api/IApi";
+export type { default as IStreamableDataApi } from "./api/IStreamableDataApi";
+export type { default as IStreamableQueryApi } from "./api/IStreamableQueryApi";
 
 export { default as ModelConverter } from "./data/ModelConverter";
 
 export { default as DependencyContainer } from "./dependencies/DependencyContainer";
 export { default as DependencyContext } from "./dependencies/DependencyContext";
-export { default as IDependencyMap } from "./dependencies/IDependencyMap";
+export type { default as IDependencyMap } from "./dependencies/IDependencyMap";
 export { default as useBloc } from "./dependencies/UseBloc";
 
 export { default as Navigation } from "./navigations/Navigation";
