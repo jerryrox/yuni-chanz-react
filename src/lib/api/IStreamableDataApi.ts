@@ -6,17 +6,17 @@ interface IStreamableDataApi<T = any> extends IApi<T | null> {
     /**
      * The data received through API streaming.
      */
-     streamedData: Bindable<T | null>;
+    streamedData: Bindable<T | null>;
 
 
      /**
       * Starts the data streaming for continuous feed.
       */
-     startStream(): void;
+    startStream(): void;
  
      /**
       * Stops an existing data streaming request.
       */
-     stopStream(): void;
+    stopStream(): void;
 }
 export default IStreamableDataApi;

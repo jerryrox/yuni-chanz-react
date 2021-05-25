@@ -2,6 +2,10 @@
 The core components of the Yuni Chanz React library.
 
 ## Versions
+### 0.0.5
+#### Changes
+- Added some encoder functions in `ModelConverter` just for consistency.
+
 ### 0.0.4
 #### New features
 - Implemented dependency management module.

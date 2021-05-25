@@ -11,6 +11,34 @@ export default abstract class ModelConverter<T = any> {
     abstract toPlain(model: T): any;
 
     /**
+     * Encodes the specified string to a plain value.
+     */
+    encodeString(value: string): any {
+        return value;
+    }
+
+    /**
+     * Encodes the specified bool to a plain value.
+     */
+    encodeBool(value: boolean): any {
+        return value;
+    }
+
+    /**
+     * Encodes the specified number to a plain value.
+     */
+    encodeNumber(value: number): any {
+        return value;
+    }
+
+    /**
+     * Encodes the specified date to a plain value.
+     */
+    encodeDate(value: Date): any {
+        return value.getTime();
+    }
+
+    /**
      * Decodes the specified plain data into a string value.
      */
     decodeString(value: any): string | null {
