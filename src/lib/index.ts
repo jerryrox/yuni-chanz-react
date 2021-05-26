@@ -1,3 +1,4 @@
+export { default as ApiResponse } from "./api/ApiResponse";
 export type { default as IApi } from "./api/IApi";
 export type { default as IStreamableDataApi } from "./api/IStreamableDataApi";
 export type { default as IStreamableQueryApi } from "./api/IStreamableQueryApi";
