@@ -3,6 +3,7 @@ export type { default as IApi } from "./api/IApi";
 export type { default as IStreamableDataApi } from "./api/IStreamableDataApi";
 export type { default as IStreamableQueryApi } from "./api/IStreamableQueryApi";
 
+export { default as EventAction } from "./data/EventAction";
 export { default as ModelConverter } from "./data/ModelConverter";
 
 export { default as DependencyContainer } from "./dependencies/DependencyContainer";
