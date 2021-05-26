@@ -4,7 +4,7 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
-### 0.2.1 (WIP)
+### 0.2.1
 #### New features
 - Implemented `EventAction` to achieve similar effect to C#'s event.
 
