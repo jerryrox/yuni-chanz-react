@@ -1,7 +1,7 @@
 import IApi from "./IApi";
 import { Bindable } from "bindable-bloc";
 
-interface IStreamableDataApi<T = any> extends IApi<T | null> {
+interface IStreamableDataApi<T = any> extends IApi<T> {
 
     /**
      * The data received through API streaming.
