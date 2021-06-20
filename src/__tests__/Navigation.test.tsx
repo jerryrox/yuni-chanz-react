@@ -53,9 +53,9 @@ const TestComponent = ({
 };
 
 const navigation = new Navigation();
-const container = new DependencyContainer({
+const container = new DependencyContainer([
     navigation,
-});
+]);
 container.initialize();
 
 afterEach(() => {
@@ -66,7 +66,7 @@ test("History is properly injected to Navigation", async () => {
     expect(navigation.getHistory()).toBeNull();
 
     render(
-        <DependencyContext.Provider value={container.contextValue}>
+        <DependencyContext.Provider value={container}>
             <TestComponent path="/"/>
         </DependencyContext.Provider>
     );
@@ -90,7 +90,7 @@ test("Params are properly injected to Navigation", async () => {
     expect(queryParam).toBeNull();
 
     render(
-        <DependencyContext.Provider value={container.contextValue}>
+        <DependencyContext.Provider value={container}>
             <TestComponent path="/1234567890?x=1&y=a">
                 <TestChild onPathParam={onPathParam} onQueryParam={onQueryParam}/>
             </TestComponent>

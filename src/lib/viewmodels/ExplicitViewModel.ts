@@ -1,5 +1,5 @@
 import BaseViewModel from "./BaseViewModel";
-import { Bindable } from "bindable-bloc";
+import { Bindable } from "bindable-data";
 
 export default abstract class ExplicitViewModel<TShowParam = Record<string, any>, TResponse = any> extends BaseViewModel<TResponse> {
     

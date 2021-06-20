@@ -4,6 +4,10 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
+### 1.0.0
+#### Major changes
+- Removed `bindable-bloc` package. Specifically, a new package `bindable-data` was used instead which is a subset that doesn't include the weird `BLoC` stuffs. All in short, this now allows for a less-complex way for a dependency to retrieve other dependencies.
+
 ### 0.2.3
 #### Fixes
 - Fixed issue where calling `ExplicitViewModel.show` would not pass the parameters to the model when the view is already being shown.

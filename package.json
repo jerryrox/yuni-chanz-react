@@ -1,6 +1,6 @@
 {
   "name": "yuni-chanz-react",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "private": false,
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -13,7 +13,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
-    "bindable-bloc": "^1.2.1",
+    "bindable-data": "^0.0.1",
     "eslint": "^7.26.0",
     "eslint-plugin-react": "^7.23.2",
     "history": "^4.9.0",
@@ -28,7 +28,7 @@
     "@types/react": "17.x",
     "@types/react-dom": "17.x",
     "@types/react-router-dom": "5.x",
-    "bindable-bloc": "1.2.x",
+    "bindable-data": "0.0.x",
     "react": "17.x",
     "react-dom": "17.x",
     "react-router-dom": "5.x"

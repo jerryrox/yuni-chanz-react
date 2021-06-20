@@ -1,8 +1,8 @@
 import React, { Fragment, useMemo } from "react";
-import { Constructor } from "bindable-bloc/lib/Types";
 import ExplicitViewModel from "./ExplicitViewModel";
-import { useBindable } from "bindable-bloc";
-import useBloc from "../dependencies/UseBloc";
+import useDependency from "../dependencies/UseDependency";
+import { Constructor } from "../Types";
+import { useBindable } from "bindable-data";
 
 interface IExplicitViewServiceParam {
     viewModelType: Constructor<ExplicitViewModel>;
@@ -13,7 +13,7 @@ const ExplicitViewWrapper = ({
     viewModelType,
     children,
 }: IExplicitViewServiceParam) => {
-    const model = useBloc(viewModelType);
+    const model = useDependency(viewModelType)!;
 
     const shouldShow = useBindable(model.shouldShow);
 

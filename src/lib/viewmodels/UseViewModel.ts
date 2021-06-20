@@ -1,10 +1,10 @@
-import { Constructor } from "bindable-bloc/lib/Types";
-import useBloc from "../dependencies/UseBloc";
+import useDependency from "../dependencies/UseDependency";
 import { useEffect } from "react";
 import BaseViewModel from "./BaseViewModel";
+import { Constructor } from "../Types";
 
 export default function useViewModel<T extends BaseViewModel>(type: Constructor<T>) {
-    const model = useBloc(type);
+    const model = useDependency(type)!;
 
     useEffect(() => {
         model.onMount();

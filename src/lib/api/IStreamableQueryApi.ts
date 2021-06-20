@@ -1,6 +1,5 @@
-import { Bindable } from "bindable-bloc";
-
 import IApi from "./IApi";
+import { Bindable } from "bindable-data";
 
 interface IStreamableQueryApi<T = any> extends IApi<T[]> {
 
