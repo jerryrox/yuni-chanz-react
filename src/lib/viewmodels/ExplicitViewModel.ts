@@ -12,11 +12,12 @@ export default abstract class ExplicitViewModel<TShowParam = Record<string, any>
      * Requests the associated view to be displayed as a result of explicitly reacting to shouldShow flag.
      */
     show(param?: TShowParam) {
-        if(!this.shouldShow.value) {
+        if (!this.shouldShow.value) {
             this.shouldShow.value = true;
-            if(param !== undefined) {
-                this.onShowParam(param);
-            }
+        }
+        
+        if (param !== undefined) {
+            this.onShowParam(param);
         }
     }
 
