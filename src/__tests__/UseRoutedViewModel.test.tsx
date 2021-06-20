@@ -1,6 +1,5 @@
 import React from "react";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BlocContextValue } from "bindable-bloc";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
@@ -10,6 +9,7 @@ import { Switch, Route, MemoryRouter } from "react-router-dom";
 import Navigation from "../lib/navigations/Navigation";
 import useRoutedViewModel from "../lib/viewmodels/UseRoutedViewModel";
 import { History } from "history";
+import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
 
 class TestRoutedVM extends RoutedViewModel {
 
@@ -39,17 +39,17 @@ const TestRoutedView = () => {
 };
 
 interface ITestRoutedParentParam {
-    contextValue: BlocContextValue;
+    container: IDependencyContainer;
     model: TestRoutedVM;
     onHistory: (history: History<any>) => void;
 }
 const TestRoutedParent = ({
-    contextValue,
+    container,
     model,
     onHistory,
 }: ITestRoutedParentParam) => {
     return (
-        <DependencyContext.Provider value={contextValue}>
+        <DependencyContext.Provider value={container}>
             <MemoryRouter>
                 <Switch>
                     <Route path={model.routePath}>
@@ -69,15 +69,15 @@ test("Route params are correctly injected.", async () => {
     const navigation = new Navigation();
 
     const model = new TestRoutedVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     let history: History<any> = (null as any);
     render(
         <TestRoutedParent
-            contextValue={container.contextValue}
+            container={container}
             model={model}
             onHistory={(h) => {
                 history = h;
@@ -128,15 +128,15 @@ test("Going back via history should properly call unmount event", async () => {
     const navigation = new Navigation();
 
     const model = new TestRoutedVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     let history: History<any> = (null as any);
     render(
         <TestRoutedParent
-            contextValue={container.contextValue}
+            container={container}
             model={model}
             onHistory={(h) => {
                 history = h;
@@ -158,15 +158,15 @@ test("Route params are updated while the view is active.", async () => {
     const navigation = new Navigation();
 
     const model = new TestRoutedVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     let history: History<any> = (null as any);
     render(
         <TestRoutedParent
-            contextValue={container.contextValue}
+            container={container}
             model={model}
             onHistory={(h) => {
                 history = h;

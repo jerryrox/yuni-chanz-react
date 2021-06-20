@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BaseBloc } from "bindable-bloc";
 import { render } from "@testing-library/react";
-import useBloc from "../lib/dependencies/UseBloc";
+import useDependency from "../lib/dependencies/UseDependency";
+import IDependency from "../lib/dependencies/IDependency";
 
-class TestDep extends BaseBloc {}
+class TestDep implements IDependency {
+    async initialize() { }
+}
 
-const container = new DependencyContainer({
-    testDep: new TestDep(),
-});
+const container = new DependencyContainer([
+    new TestDep(),
+]);
 container.initialize();
 
 interface ITestParentParam {
@@ -19,7 +21,7 @@ const TestParent = ({
     children,
 }: ITestParentParam) => {
     return (
-        <DependencyContext.Provider value={container.contextValue}>
+        <DependencyContext.Provider value={container}>
             {children}
         </DependencyContext.Provider>
     );
@@ -31,7 +33,7 @@ interface ITestChildParam {
 const TestChild = ({
     onTestDep,
 }: ITestChildParam) => {
-    const value = useBloc(TestDep);
+    const value = useDependency(TestDep)!;
 
     useEffect(() => {
         onTestDep(value);
@@ -57,5 +59,6 @@ test("UseBloc", async () => {
     );
 
     expect(testDep).not.toBeNull();
-    expect(testDep).toBe(container.dependencies.testDep);
+    expect(testDep).not.toBeUndefined();
+    expect(testDep).toBe(container.allDependencies[0]);
 });

@@ -1,10 +1,12 @@
-import { BaseBloc } from "bindable-bloc";
 import { History } from "history";
+import IDependency from "../dependencies/IDependency";
 
-export default class Navigation extends BaseBloc {
+export default class Navigation implements IDependency {
     
     private history: History<any> | null = null;
 
+
+    async initialize() { }
 
     /**
      * Returns the history instance currently in use.

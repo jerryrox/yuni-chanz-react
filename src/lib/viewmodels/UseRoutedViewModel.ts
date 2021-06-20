@@ -1,10 +1,10 @@
-import { Constructor } from "bindable-bloc/lib/Types";
 import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import useQueryParams from "../navigations/UseQueryParams";
 import RoutedViewModel from "./RoutedViewModel";
-import { useBindable } from "bindable-bloc";
 import useViewModel from "./UseViewModel";
+import { useBindable } from "bindable-data";
+import { Constructor } from "../Types";
 
 export default function useRoutedViewModel<T extends RoutedViewModel>(type: Constructor<T>) {
     const model = useViewModel(type);

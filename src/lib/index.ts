@@ -8,8 +8,9 @@ export { default as ModelConverter } from "./data/ModelConverter";
 
 export { default as DependencyContainer } from "./dependencies/DependencyContainer";
 export { default as DependencyContext } from "./dependencies/DependencyContext";
-export type { default as IDependencyMap } from "./dependencies/IDependencyMap";
-export { default as useBloc } from "./dependencies/UseBloc";
+export type { default as IDependency } from "./dependencies/IDependency";
+export type { default as IDependencyContainer } from "./dependencies/IDependencyContainer";
+export { default as useDependency } from "./dependencies/UseDependency";
 
 export { default as Navigation } from "./navigations/Navigation";
 export { default as NavigationService } from "./navigations/NavigationService";
@@ -25,3 +26,5 @@ export { default as ExplicitViewWrapper } from "./viewmodels/ExplicitViewWrapper
 export { default as RoutedViewModel } from "./viewmodels/RoutedViewModel";
 export { default as useRoutedViewModel } from "./viewmodels/UseRoutedViewModel";
 export { default as useViewModel } from "./viewmodels/UseViewModel";
+
+export * from "./Types";

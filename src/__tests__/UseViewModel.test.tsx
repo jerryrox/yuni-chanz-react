@@ -1,12 +1,13 @@
 import React from "react";
 import BaseViewModel from "../lib/viewmodels/BaseViewModel";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BlocContextValue, Bindable, useBindable } from "bindable-bloc";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import useViewModel from "../lib/viewmodels/UseViewModel";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import PromiseUtils from "../lib/utils/PromiseUtils";
+import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
+import { Bindable, useBindable } from "bindable-data";
 
 class TestVM extends BaseViewModel {
 
@@ -26,17 +27,17 @@ const TestView = () => {
 };
 
 interface ITestParentParam {
-    contextValue: BlocContextValue;
+    container: IDependencyContainer;
     bindableShowFlag: Bindable<boolean>;
 }
 const TestParent = ({
-    contextValue,
+    container,
     bindableShowFlag,
 }: ITestParentParam) => {
     const showFlag = useBindable(bindableShowFlag);
 
     return (
-        <DependencyContext.Provider value={contextValue}>
+        <DependencyContext.Provider value={container}>
             {
                 showFlag && <TestView/>
             }
@@ -46,16 +47,16 @@ const TestParent = ({
 
 test("ViewModel mount/unmount functions are called via Hook.", async () => {
     const model = new TestVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     const showFlag = new Bindable<boolean>(false);
 
     render(
         <TestParent
-            contextValue={container.contextValue}
+            container={container}
             bindableShowFlag={showFlag}
         />
     );

@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { BlocContextValue } from "bindable-bloc";
+import DependencyContainer from "./DependencyContainer";
+import IDependencyContainer from "./IDependencyContainer";
 
-const DependencyContext = createContext<BlocContextValue>(new BlocContextValue());
+const DependencyContext = createContext<IDependencyContainer>(new DependencyContainer([]));
 export default DependencyContext;
