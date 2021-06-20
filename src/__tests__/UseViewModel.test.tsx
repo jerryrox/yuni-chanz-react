@@ -1,13 +1,13 @@
 import React from "react";
 import BaseViewModel from "../lib/viewmodels/BaseViewModel";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { Bindable, useBindable } from "bindable-bloc";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import useViewModel from "../lib/viewmodels/UseViewModel";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import PromiseUtils from "../lib/utils/PromiseUtils";
 import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
+import { Bindable, useBindable } from "bindable-data";
 
 class TestVM extends BaseViewModel {
 

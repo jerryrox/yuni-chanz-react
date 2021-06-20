@@ -1,8 +1,8 @@
 import React, { Fragment, useMemo } from "react";
-import { Constructor } from "bindable-bloc/lib/Types";
 import ExplicitViewModel from "./ExplicitViewModel";
-import { useBindable } from "bindable-bloc";
 import useDependency from "../dependencies/UseDependency";
+import { Constructor } from "../Types";
+import { useBindable } from "bindable-data";
 
 interface IExplicitViewServiceParam {
     viewModelType: Constructor<ExplicitViewModel>;

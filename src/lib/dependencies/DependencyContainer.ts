@@ -1,7 +1,7 @@
-import { Bindable } from "bindable-bloc";
 import IDependency from "./IDependency";
 import { Constructor } from "../Types";
 import IDependencyContainer from "./IDependencyContainer";
+import { Bindable } from "bindable-data";
 
 export default class DependencyContainer implements IDependencyContainer {
     readonly isInitializing = new Bindable(false);

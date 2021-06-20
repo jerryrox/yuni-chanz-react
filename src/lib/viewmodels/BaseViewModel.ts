@@ -1,6 +1,7 @@
-import { BaseBloc, Bindable } from "bindable-bloc";
+import IDependency from "../dependencies/IDependency";
+import { Bindable } from "bindable-data";
 
-export default abstract class BaseViewModel<TResponse = any> extends BaseBloc {
+export default abstract class BaseViewModel<TResponse = any> implements IDependency {
     
     readonly isInitializing = new Bindable(false);
     readonly isActive = new Bindable(false);
@@ -12,6 +13,8 @@ export default abstract class BaseViewModel<TResponse = any> extends BaseBloc {
      */
     private resolver: ((value: TResponse | undefined) => any) | null = null;
 
+
+    async initialize() {}
 
     /**
      * Initializes the viewmodel.

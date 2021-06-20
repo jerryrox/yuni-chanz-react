@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BaseBloc } from "bindable-bloc";
 import { render } from "@testing-library/react";
 import useDependency from "../lib/dependencies/UseDependency";
+import IDependency from "../lib/dependencies/IDependency";
 
-class TestDep extends BaseBloc {}
+class TestDep implements IDependency {
+    async initialize() { }
+}
 
 const container = new DependencyContainer([
     new TestDep(),

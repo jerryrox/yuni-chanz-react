@@ -1,19 +1,19 @@
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BaseBloc } from "bindable-bloc";
 import PromiseUtils from "../lib/utils/PromiseUtils";
+import IDependency from "../lib/dependencies/IDependency";
+import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
 
-class TestDependency extends BaseBloc {
+class TestDependency implements IDependency {
     private promise: Promise<void>;
     private resolve: ((value?: any) => void) | null = null;
 
     constructor() {
-        super();
         this.promise = new Promise((resolve) => {
             this.resolve = resolve;
         });
     }
 
-    initialize() {
+    initialize(dependencies: IDependencyContainer) { // eslint-disable-line
         return this.promise;
     }
 
