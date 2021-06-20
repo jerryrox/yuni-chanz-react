@@ -8,8 +8,7 @@ export { default as ModelConverter } from "./data/ModelConverter";
 
 export { default as DependencyContainer } from "./dependencies/DependencyContainer";
 export { default as DependencyContext } from "./dependencies/DependencyContext";
-export type { default as IDependencyMap } from "./dependencies/IDependencyMap";
-export { default as useBloc } from "./dependencies/UseBloc";
+export { default as useBloc } from "./dependencies/UseDependency";
 
 export { default as Navigation } from "./navigations/Navigation";
 export { default as NavigationService } from "./navigations/NavigationService";

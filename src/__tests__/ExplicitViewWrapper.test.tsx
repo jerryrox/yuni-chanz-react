@@ -7,7 +7,7 @@ import useViewModel from "../lib/viewmodels/UseViewModel";
 import { render } from "@testing-library/react";
 import PromiseUtils from "../lib/utils/PromiseUtils";
 import { act } from "react-dom/test-utils";
-import { BlocContextValue } from "bindable-bloc";
+import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
 
 class TestVM extends ExplicitViewModel {
 
@@ -26,7 +26,7 @@ const TestView = () => {
 };
 
 interface ITestParentParam {
-    contextValue: BlocContextValue;
+    contextValue: IDependencyContainer;
 }
 const TestParent = ({
     contextValue,
@@ -42,9 +42,9 @@ const TestParent = ({
 
 test("View is correctly shown and hidden when requested on its viewmodel.", async () => {
     const model = new TestVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     expect(model.shouldShow.value).toBe(false);
@@ -52,7 +52,7 @@ test("View is correctly shown and hidden when requested on its viewmodel.", asyn
     expect(model.isActive.value).toBe(false);
 
     render(
-        <TestParent contextValue={container.contextValue}/>
+        <TestParent contextValue={container}/>
     );
     expect(model.shouldShow.value).toBe(false);
     expect(model.isInitializing.value).toBe(false);
@@ -80,13 +80,13 @@ test("View is correctly shown and hidden when requested on its viewmodel.", asyn
 
 test("View is correctly disposed when it was requested for hiding during initialization", async () => {
     const model = new TestVM();
-    const container = new DependencyContainer({
+    const container = new DependencyContainer([
         model,
-    });
+    ]);
     container.initialize();
 
     render(
-        <TestParent contextValue={container.contextValue}/>
+        <TestParent contextValue={container}/>
     );
 
     act(() => {

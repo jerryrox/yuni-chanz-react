@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import DependencyContext from "../lib/dependencies/DependencyContext";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
-import { BaseBloc, BlocContextValue } from "bindable-bloc";
 import { render } from "@testing-library/react";
 import { useContext } from "react";
+import IDependencyContainer from "../lib/dependencies/IDependencyContainer";
+import IDependency from "../lib/dependencies/IDependency";
 
-class TestDep extends BaseBloc {}
+class TestDep implements IDependency {
+    async initialize(container: IDependencyContainer) {} // eslint-disable-line
+}
 
-const container = new DependencyContainer({
-    testDep: new TestDep(),
-});
+const container = new DependencyContainer([
+    new TestDep(),
+]);
 container.initialize();
 
 interface ITestParentParam {
@@ -19,14 +22,14 @@ const TestParent = ({
     children,
 }: ITestParentParam) => {
     return (
-        <DependencyContext.Provider value={container.contextValue}>
+        <DependencyContext.Provider value={container}>
             {children}
         </DependencyContext.Provider>
     );
 };
 
 interface ITestChildParam {
-    onContext: (value: BlocContextValue) => void;
+    onContext: (value: IDependencyContainer) => void;
 }
 const TestChild = ({
     onContext,
@@ -45,8 +48,8 @@ const TestChild = ({
 };
 
 test("DependencyContext is correctly injected to DOM tree", async () => {
-    let contextValue: BlocContextValue | null = null;
-    const onContext = (value: BlocContextValue) => {
+    let contextValue: IDependencyContainer | null = null;
+    const onContext = (value: IDependencyContainer) => {
         contextValue = value;
     };
 
@@ -57,6 +60,6 @@ test("DependencyContext is correctly injected to DOM tree", async () => {
     );
 
     expect(contextValue).not.toBeNull();
-    expect(contextValue).toBe(container.contextValue);
-    expect(contextValue!.getBloc(TestDep)).toBe(container.dependencies.testDep);
+    expect(contextValue).toBe(container);
+    expect(contextValue!.getType(TestDep)).toBe(container.allDependencies[0]);
 });
