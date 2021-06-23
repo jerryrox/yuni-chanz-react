@@ -3,15 +3,13 @@ import DependencyContext from "../lib/dependencies/DependencyContext";
 import DependencyContainer from "../lib/dependencies/DependencyContainer";
 import { render } from "@testing-library/react";
 import useDependency from "../lib/dependencies/UseDependency";
-import IDependency from "../lib/dependencies/IDependency";
+import BaseDependency from "../lib/dependencies/BaseDependency";
 
-class TestDep implements IDependency {
-    async initialize() { }
+class TestDep extends BaseDependency {
 }
 
-const container = new DependencyContainer([
-    new TestDep(),
-]);
+const container = new DependencyContainer();
+container.add(new TestDep(container));
 container.initialize();
 
 interface ITestParentParam {

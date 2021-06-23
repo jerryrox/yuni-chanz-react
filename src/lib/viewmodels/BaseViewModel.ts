@@ -1,7 +1,7 @@
-import IDependency from "../dependencies/IDependency";
 import { Bindable } from "bindable-data";
+import BaseDependency from "../dependencies/BaseDependency";
 
-export default abstract class BaseViewModel<TResponse = any> implements IDependency {
+export default abstract class BaseViewModel<TResponse = any> extends BaseDependency {
     
     readonly isInitializing = new Bindable(false);
     readonly isActive = new Bindable(false);
@@ -13,8 +13,6 @@ export default abstract class BaseViewModel<TResponse = any> implements IDepende
      */
     private resolver: ((value: TResponse | undefined) => any) | null = null;
 
-
-    async initialize() {}
 
     /**
      * Initializes the viewmodel.

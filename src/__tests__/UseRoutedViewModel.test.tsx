@@ -66,12 +66,9 @@ const TestRoutedParent = ({
 };
 
 test("Route params are correctly injected.", async () => {
-    const navigation = new Navigation();
-
-    const model = new TestRoutedVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const navigation = container.add(new Navigation(container));
+    const model = container.add(new TestRoutedVM(container));
     container.initialize();
 
     let history: History<any> = (null as any);
@@ -125,12 +122,9 @@ test("Route params are correctly injected.", async () => {
 });
 
 test("Going back via history should properly call unmount event", async () => {
-    const navigation = new Navigation();
-
-    const model = new TestRoutedVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const navigation = container.add(new Navigation(container));
+    const model = container.add(new TestRoutedVM(container));
     container.initialize();
 
     let history: History<any> = (null as any);
@@ -155,12 +149,9 @@ test("Going back via history should properly call unmount event", async () => {
 });
 
 test("Route params are updated while the view is active.", async () => {
-    const navigation = new Navigation();
-
-    const model = new TestRoutedVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const navigation = container.add(new Navigation(container));
+    const model = container.add(new TestRoutedVM(container));
     container.initialize();
 
     let history: History<any> = (null as any);
