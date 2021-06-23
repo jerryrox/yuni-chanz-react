@@ -8,7 +8,7 @@ export { default as ModelConverter } from "./data/ModelConverter";
 
 export { default as DependencyContainer } from "./dependencies/DependencyContainer";
 export { default as DependencyContext } from "./dependencies/DependencyContext";
-export type { default as IDependency } from "./dependencies/IDependency";
+export { default as BaseDependency } from "./dependencies/BaseDependency";
 export type { default as IDependencyContainer } from "./dependencies/IDependencyContainer";
 export { default as useDependency } from "./dependencies/UseDependency";
 

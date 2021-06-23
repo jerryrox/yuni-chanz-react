@@ -46,10 +46,8 @@ const TestParent = ({
 };
 
 test("ViewModel mount/unmount functions are called via Hook.", async () => {
-    const model = new TestVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const model = container.add(new TestVM(container));
     container.initialize();
 
     const showFlag = new Bindable<boolean>(false);

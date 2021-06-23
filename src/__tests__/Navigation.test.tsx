@@ -52,10 +52,8 @@ const TestComponent = ({
     );
 };
 
-const navigation = new Navigation();
-const container = new DependencyContainer([
-    navigation,
-]);
+const container = new DependencyContainer();
+const navigation = container.add(new Navigation(container));
 container.initialize();
 
 afterEach(() => {

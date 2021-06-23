@@ -41,10 +41,8 @@ const TestParent = ({
 };
 
 test("View is correctly shown and hidden when requested on its viewmodel.", async () => {
-    const model = new TestVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const model = container.add(new TestVM(container));
     container.initialize();
 
     expect(model.shouldShow.value).toBe(false);
@@ -79,10 +77,8 @@ test("View is correctly shown and hidden when requested on its viewmodel.", asyn
 });
 
 test("View is correctly disposed when it was requested for hiding during initialization", async () => {
-    const model = new TestVM();
-    const container = new DependencyContainer([
-        model,
-    ]);
+    const container = new DependencyContainer();
+    const model = container.add(new TestVM(container));
     container.initialize();
 
     render(

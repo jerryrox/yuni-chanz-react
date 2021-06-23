@@ -1,12 +1,10 @@
 import { History } from "history";
-import IDependency from "../dependencies/IDependency";
+import BaseDependency from "../dependencies/BaseDependency";
 
-export default class Navigation implements IDependency {
+export default class Navigation extends BaseDependency {
     
     private history: History<any> | null = null;
 
-
-    async initialize() { }
 
     /**
      * Returns the history instance currently in use.
