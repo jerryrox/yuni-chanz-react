@@ -7,6 +7,7 @@ This is still in early development, so it is subject to frequent breaking change
 ### 1.1.2 (WIP)
 #### New features
 - Added `getSearchParams` to `Navigation` module.
+- Added support for `URLSearchParams` argument type for `Navigation.pushPath`.
 
 ### 1.1.1
 #### Changes
