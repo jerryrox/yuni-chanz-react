@@ -73,7 +73,6 @@ test("History is properly injected to Navigation", async () => {
 });
 
 test("Params are properly injected to Navigation", async () => {
-
     let pathParam: Record<string, string> | null = null;
     let queryParam: URLSearchParams | null = null;
     const onPathParam = (value: Record<string, string>) => {
@@ -101,4 +100,63 @@ test("Params are properly injected to Navigation", async () => {
     });
     expect(queryParam!.get("x")).toMatch("1");
     expect(queryParam!.get("y")).toMatch("a");
+});
+
+test("Retrieving search params", () => {
+    expect(navigation.getHistory()).toBeNull();
+    expect(navigation.getSearchParams()).toBeNull();
+
+    const history: any = {
+        location: {
+            search: "test=aa",
+        },
+    };
+    navigation.setHistory(history);
+    const params = navigation.getSearchParams();
+    expect(params).not.toBeNull();
+    expect(params!.get("test")).toBe("aa");
+    expect(params!.get("test2")).toBe(null);
+});
+
+test("Push path with object query param", () => {
+    let pushedPath = "";
+    const history: any = {
+        push: (path: string) => {
+            pushedPath = path;
+        },
+    };
+
+    navigation.setHistory(history);
+
+    navigation.pushPath("/test");
+    expect(pushedPath).toBe("/test");
+    
+    navigation.pushPath("/test2", {});
+    expect(pushedPath).toBe("/test2?");
+
+    navigation.pushPath("/test3", {
+        key: "value",
+        key2: "3",
+    });
+    expect(pushedPath).toBe("/test3?key=value&key2=3");
+});
+
+test("Push path with URLSearchParam", () => {
+    let pushedPath = "";
+    const history: any = {
+        push: (path: string) => {
+            pushedPath = path;
+        },
+    };
+
+    navigation.setHistory(history);
+
+    navigation.pushPath("/test");
+    expect(pushedPath).toBe("/test");
+    
+    navigation.pushPath("/test2", new URLSearchParams());
+    expect(pushedPath).toBe("/test2?");
+
+    navigation.pushPath("/test3", new URLSearchParams("key=value&key2=3"));
+    expect(pushedPath).toBe("/test3?key=value&key2=3");
 });
