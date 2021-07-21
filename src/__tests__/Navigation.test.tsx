@@ -73,7 +73,6 @@ test("History is properly injected to Navigation", async () => {
 });
 
 test("Params are properly injected to Navigation", async () => {
-
     let pathParam: Record<string, string> | null = null;
     let queryParam: URLSearchParams | null = null;
     const onPathParam = (value: Record<string, string>) => {
@@ -117,4 +116,47 @@ test("Retrieving search params", () => {
     expect(params).not.toBeNull();
     expect(params!.get("test")).toBe("aa");
     expect(params!.get("test2")).toBe(null);
+});
+
+test("Push path with object query param", () => {
+    let pushedPath = "";
+    const history: any = {
+        push: (path: string) => {
+            pushedPath = path;
+        },
+    };
+
+    navigation.setHistory(history);
+
+    navigation.pushPath("/test");
+    expect(pushedPath).toBe("/test");
+    
+    navigation.pushPath("/test2", {});
+    expect(pushedPath).toBe("/test2?");
+
+    navigation.pushPath("/test3", {
+        key: "value",
+        key2: "3",
+    });
+    expect(pushedPath).toBe("/test3?key=value&key2=3");
+});
+
+test("Push path with URLSearchParam", () => {
+    let pushedPath = "";
+    const history: any = {
+        push: (path: string) => {
+            pushedPath = path;
+        },
+    };
+
+    navigation.setHistory(history);
+
+    navigation.pushPath("/test");
+    expect(pushedPath).toBe("/test");
+    
+    navigation.pushPath("/test2", new URLSearchParams());
+    expect(pushedPath).toBe("/test2?");
+
+    navigation.pushPath("/test3", new URLSearchParams("key=value&key2=3"));
+    expect(pushedPath).toBe("/test3?key=value&key2=3");
 });

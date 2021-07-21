@@ -31,14 +31,17 @@ export default class Navigation extends BaseDependency {
     /**
      * Pushes the specified path to the navigation stack.
      */
-    pushPath(path: string, queryParam?: Record<string, any>) {
+    pushPath(path: string, queryParam?: Record<string, any> | URLSearchParams) {
         if(this.history === null) {
             console.warn("Attempted to push path when history instance is null.");
             return;
         }
 
         let searchParam: URLSearchParams | null = null;
-        if(queryParam !== undefined) {
+        if (queryParam instanceof URLSearchParams) {
+            searchParam = queryParam;
+        }
+        else if(queryParam !== undefined) {
             searchParam = new URLSearchParams();
             for(const key in queryParam) {
                 const value = queryParam[key] as any;
