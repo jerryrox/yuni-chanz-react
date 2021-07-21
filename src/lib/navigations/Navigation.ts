@@ -21,6 +21,14 @@ export default class Navigation extends BaseDependency {
     }
 
     /**
+     * Returns the URLSearchParams instance from current history.
+     * May return null if history is null.
+     */
+    getSearchParams(): URLSearchParams | null {
+        return this.history === null ? null : new URLSearchParams(this.history.location.search);
+    }
+
+    /**
      * Pushes the specified path to the navigation stack.
      */
     pushPath(path: string, queryParam?: Record<string, any>) {

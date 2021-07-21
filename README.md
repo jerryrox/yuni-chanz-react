@@ -4,6 +4,10 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
+### 1.1.2 (WIP)
+#### New features
+- Added `getSearchParams` to `Navigation` module.
+
 ### 1.1.1
 #### Changes
 - Changed the default parameter type of `ExplicitViewModel` to `any`.

@@ -102,3 +102,19 @@ test("Params are properly injected to Navigation", async () => {
     expect(queryParam!.get("x")).toMatch("1");
     expect(queryParam!.get("y")).toMatch("a");
 });
+
+test("Retrieving search params", () => {
+    expect(navigation.getHistory()).toBeNull();
+    expect(navigation.getSearchParams()).toBeNull();
+
+    const history: any = {
+        location: {
+            search: "test=aa",
+        },
+    };
+    navigation.setHistory(history);
+    const params = navigation.getSearchParams();
+    expect(params).not.toBeNull();
+    expect(params!.get("test")).toBe("aa");
+    expect(params!.get("test2")).toBe(null);
+});
