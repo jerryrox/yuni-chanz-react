@@ -4,7 +4,11 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
-### 1.1.3
+### 1.1.5
+#### Changes
+- Removed `hideWithResponse` from `ExplicitViewModel` and instead, implemented the same logics on existing method `hide`.
+
+### 1.1.4
 #### New features
 - Added `ExplicitAniViewModel` to support "hiding animations" on the view if necessary.
 - Added `hideWithResponse` on `ExplicitViewModel` to hide the associted view while resolving any awaits made on the viewmodel.

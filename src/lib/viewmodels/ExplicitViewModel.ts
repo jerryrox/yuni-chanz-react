@@ -24,8 +24,9 @@ export default abstract class ExplicitViewModel<TShowParam = any, TResponse = an
     /**
      * Requests the associated view to be hidden as a result of explicitly reacting to shouldShow flag.
      */
-    hide() {
+    hide(response?: TResponse | undefined) {
         if(this.shouldShow.value) {
+            this.resolveResponse(response);
             this.shouldShow.value = false;
         }
     }

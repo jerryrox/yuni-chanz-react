@@ -21,6 +21,7 @@ export { default as PathUtils } from "./utils/PathUtils";
 export { default as PromiseUtils } from "./utils/PromiseUtils";
 
 export { default as BaseViewModel } from "./viewmodels/BaseViewModel";
+export { default as ExplicitAniViewModel } from "./viewmodels/ExplicitAniViewModel";
 export { default as ExplicitViewModel } from "./viewmodels/ExplicitViewModel";
 export { default as ExplicitViewWrapper } from "./viewmodels/ExplicitViewWrapper";
 export { default as RoutedViewModel } from "./viewmodels/RoutedViewModel";
