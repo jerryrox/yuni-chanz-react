@@ -4,6 +4,13 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
+### 1.1.3
+#### New features
+- Added `ExplicitAniViewModel` to support "hiding animations" on the view if necessary.
+- Added `hideWithResponse` on `ExplicitViewModel` to hide the associted view while resolving any awaits made on the viewmodel.
+#### Changes
+- Increased version of dependency `bindable-data`.
+
 ### 1.1.2
 #### New features
 - Added `getSearchParams` to `Navigation` module.
