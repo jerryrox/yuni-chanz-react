@@ -120,3 +120,41 @@ test("Array map", () => {
         "43"
     ]);
 });
+
+test("Iterate object", () => {
+    const converter = new TestConverter();
+
+    let checkedKeys: string = "";
+    const result = converter.iterateObject<number>({
+        "a": 1,
+        "b": 10,
+        "c": 100,
+    }, (key, value, curOutput) => {
+        checkedKeys += key;
+        return curOutput + value;
+    }, 0);
+    expect(result).toBe(111);
+    expect(checkedKeys.length).toBe(3);
+    expect(checkedKeys.includes("a")).toBeTruthy();
+    expect(checkedKeys.includes("b")).toBeTruthy();
+    expect(checkedKeys.includes("c")).toBeTruthy();
+
+    const result2 = converter.iterateObject([1, 2, 3], () => {
+        throw new Error("This shouldn't be called.");
+    }, null);
+    expect(result2).toBeNull();
+
+    const result3 = converter.iterateObject<Record<string, number>>({
+        "a": 1,
+        "b": 10,
+        "c": 100,
+    }, (key, value, curOutput) => {
+        curOutput[key] = value * 10;
+        return curOutput;
+    }, {});
+    expect(result3).toMatchObject({
+        "a": 10,
+        "b": 100,
+        "c": 1000,
+    });
+});

@@ -7,6 +7,7 @@ This is still in early development, so it is subject to frequent breaking change
 ### 1.1.7 (WIP)
 #### New features
 - Implemented `mapArray` function on `ModelConverter` to help running `Array.map` on a dynamic object.
+- Implemented `iterateObject` function on `ModelConverter` to help iterating through a dynamic object.
 
 ### 1.1.6
 #### Changes
