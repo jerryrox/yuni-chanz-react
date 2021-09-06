@@ -11,6 +11,33 @@ export default abstract class ModelConverter<T = any> {
     abstract toPlain(model: T): any;
 
     /**
+     * Provides array map function fo the specified value, if it is an array type.
+     */
+    mapArray<T>(value: any, mapper: (val: any, index: number, array: any[]) => T): T[] {
+        if (Array.isArray(value)) {
+            return value.map(mapper);
+        }
+        return [];
+    }
+
+    /**
+     * Provides iteration through the specified object's key/value pairs, if it is an object type.
+     */
+    iterateObject<T>(value: any, iterator: (key: string, value: any, curOutput: T) => T, initialOutput: T): T {
+        if (Array.isArray(value)) {
+            return initialOutput;
+        }
+        if (typeof (value) === "object") {
+            let finalOutput: T | undefined = initialOutput;
+            for (const key of Object.keys(value)) {
+                finalOutput = iterator(key, value[key], finalOutput);
+            }
+            return finalOutput;
+        }
+        return initialOutput;
+    }
+
+    /**
      * Encodes the specified string to a plain value.
      */
     encodeString(value: string): any {

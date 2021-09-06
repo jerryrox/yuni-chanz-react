@@ -17,8 +17,9 @@ export default abstract class ExplicitAniViewModel<TShowParam = any, TResponse =
         this.isHiding.value = false;
     }
 
-    hide() {
-        if(this.shouldShow.value) {
+    hide(response?: TResponse | undefined) {
+        if (this.shouldShow.value) {
+            this.resolveResponse(response);
             this.isHiding.value = true;
         }
     }
