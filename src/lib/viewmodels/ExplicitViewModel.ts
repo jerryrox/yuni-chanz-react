@@ -31,6 +31,16 @@ export default abstract class ExplicitViewModel<TShowParam = any, TResponse = an
     }
 
     /**
+     * Hides the view with the specified response.
+     */
+    hideWithResponse(response: TResponse | undefined) {
+        if (this.shouldShow.value) {
+            this.resolveResponse(response);
+            this.hide();
+        }
+    }
+
+    /**
      * Event called when the view-showing parameters have changed.
      */
     onShowParam(param: TShowParam): void {} // eslint-disable-line
