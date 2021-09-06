@@ -5,6 +5,9 @@ This is still in early development, so it is subject to frequent breaking change
 
 ## Versions
 ### 1.1.3 (WIP)
+#### New features
+- Added `ExplicitAniViewModel` to support "hiding animations" on the view if necessary.
+- Added `hideWithResponse` on `ExplicitViewModel` to hide the associted view while resolving any awaits made on the viewmodel.
 #### Changes
 - Increased version of dependency `bindable-data`.
 
