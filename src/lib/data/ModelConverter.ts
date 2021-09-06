@@ -11,6 +11,16 @@ export default abstract class ModelConverter<T = any> {
     abstract toPlain(model: T): any;
 
     /**
+     * Provides array map function fo the specified value, if it is an array type.
+     */
+    mapArray<T>(value: any, mapper: (val: any, index: number, array: any[]) => T): T[] {
+        if (Array.isArray(value)) {
+            return value.map(mapper);
+        }
+        return [];
+    }
+
+    /**
      * Encodes the specified string to a plain value.
      */
     encodeString(value: string): any {

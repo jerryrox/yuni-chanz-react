@@ -90,3 +90,33 @@ test("Data decode functions", () => {
     expect(converter.decodeDate(1.5)?.getTime()).toBeCloseTo(new Date(1.5).getTime());
     expect(converter.decodeDate("2020-01-01")?.getTime()).toBeCloseTo(new Date("2020-01-01").getTime());
 });
+
+test("Array map", () => {
+    const converter = new TestConverter();
+    const result = converter.mapArray(1234, () => {
+        throw new Error("This shouldn't be called.");
+    });
+    expect(Array.isArray(result)).toBeTruthy();
+    expect(result.length).toBe(0);
+    
+    const result2 = converter.mapArray("1234", () => {
+        throw new Error("This also shouldn't be called.");
+    });
+    expect(Array.isArray(result2)).toBeTruthy();
+    expect(result2.length).toBe(0);
+
+    let mapCalls = 0;
+    const result3 = converter.mapArray([1,2,3,4], (v, i, a) => {
+        expect(v).toBe(i + 1);
+        expect(a).toMatchObject([1,2,3,4]);
+        mapCalls++;
+        return `${v}${i}`;
+    });
+    expect(mapCalls).toBe(4);
+    expect(result3).toMatchObject([
+        "10",
+        "21",
+        "32",
+        "43"
+    ]);
+});
