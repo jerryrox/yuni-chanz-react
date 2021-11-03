@@ -4,6 +4,10 @@ The core components of the Yuni Chanz React library.
 This is still in early development, so it is subject to frequent breaking changes. The package wasn't meant for others to use anyway...
 
 ## Versions
+### 1.1.8
+#### Changes
+- Removed `ModelConverter.toModel`.
+
 ### 1.1.7
 #### New features
 - Implemented `mapArray` function on `ModelConverter` to help running `Array.map` on a dynamic object.

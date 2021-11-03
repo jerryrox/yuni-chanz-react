@@ -1,11 +1,6 @@
 export default abstract class ModelConverter<T = any> {
 
     /**
-     * Converts the specified plain data into a structured data of type T.
-     */
-    abstract toModel(data: any): T;
-
-    /**
      * Converts the specified model instance to plain data for storage.
      */
     abstract toPlain(model: T): any;
